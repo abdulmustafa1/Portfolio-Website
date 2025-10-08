@@ -149,33 +149,19 @@ export const trackSiteVisit = async () => {
   try {
     const today = new Date().toISOString().split('T')[0];
     
-    const { data: existing, error: fetchError } = await supabase 
+    const { error } = await supabase
       .from('site_analytics')
-      .select('*')
-      .eq('visit_date', today)
-      .single(); 
-
-    if (fetchError && fetchError.code !== 'PGRST116') {
-      throw fetchError;
-    }
-
-    if (existing) {
-      const { error: updateError } = await supabase
-        .from('site_analytics')
-        .update({
-          visit_count: existing.visit_count + 1,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', existing.id);
-      
-      if (updateError) throw updateError;
-    } else {
-      const { error: insertError } = await supabase
-        .from('site_analytics') 
-        .insert({ visit_date: today, visit_count: 1 });
-      
-      if (insertError) throw insertError;
-    }
+      .upsert({
+        visit_date: today,
+        visit_count: 1,
+        updated_at: new Date().toISOString()
+      }, {
+        onConflict: 'visit_date',
+        ignoreDuplicates: false
+      })
+      .select();
+    
+    if (error) throw error;
   } catch (error) {
     console.error('Error tracking site visit:', error);
   }
