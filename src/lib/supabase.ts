@@ -144,6 +144,12 @@ export interface TagPreset {
   created_at: string;
 }
 
+export interface ProgressTracker {
+  id: string;
+  thumbnails_in_progress: number;
+  updated_at: string;
+}
+
 // Analytics functions
 export const trackSiteVisit = async () => {
   try {

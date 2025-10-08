@@ -8,6 +8,7 @@ import CategoriesManager from './CategoriesManager';
 import TagsManager from './TagsManager';
 import TagPresetsManager from './TagPresetsManager';
 import PrivateFormManager from './PrivateFormManager';
+import ProgressTrackerManager from './ProgressTrackerManager';
 import ABTestingManager from './ABTestingManager';
 import AchievementsManager from './AchievementsManager';
 import FAQsManager from './FAQsManager';
@@ -82,6 +83,8 @@ const AdminPanel: React.FC = () => {
         return <TagPresetsManager />;
       case 'private-forms':
         return <PrivateFormManager />;
+      case 'progress-tracker':
+        return <ProgressTrackerManager />;
       case 'analytics':
         return <AnalyticsDashboard />;
       default:

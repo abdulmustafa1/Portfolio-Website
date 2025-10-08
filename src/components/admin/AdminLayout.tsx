@@ -35,6 +35,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({
     { id: 'categories', label: 'Categories Manager', icon: Tags },
     { id: 'tags', label: 'Tags Manager', icon: Tags },
     { id: 'tag-presets', label: 'Tag Presets', icon: Tags },
+    { id: 'progress-tracker', label: 'Progress Tracker', icon: BarChart3 },
     { id: 'ab-testing', label: 'A/B Testing Manager', icon: TestTube },
     { id: 'achievements', label: 'Achievements & Reviews', icon: Trophy },
     { id: 'reviews', label: 'Reviews Manager', icon: MessageSquare },

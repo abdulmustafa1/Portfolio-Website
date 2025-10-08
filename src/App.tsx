@@ -12,6 +12,8 @@ import PrivateAccess from './components/PrivateAccess';
 import AdminPanel from './components/admin/AdminPanel'; 
 import ParticleBackground from './components/ParticleBackground'; 
 import AllItems from './components/AllItems';
+import TimeEstimatorButton from './components/TimeEstimatorButton';
+import TimeEstimatePage from './components/TimeEstimatePage';
 import { trackSiteVisit } from './lib/supabase';
 import './index.css';
 
@@ -54,6 +56,9 @@ function App() {
       setShowAdminPanel(true);
     } else if (path === '/all-items') {
       setShowAllItems(true);
+    } else if (path === '/time-estimate') {
+      // Handle time estimate page
+      return;
     }
   }, []);
 
@@ -78,6 +83,11 @@ function App() {
     window.history.pushState({}, '', '/');
     setShowAllItems(false);
   };
+
+  // Handle time estimate page
+  if (window.location.pathname === '/time-estimate') {
+    return <TimeEstimatePage />;
+  }
 
   if (showAdminPanel) {
     return <AdminPanel />;
@@ -109,6 +119,7 @@ function App() {
     <div className="bg-gray-900 text-white min-h-screen relative overflow-x-hidden">
       <ParticleBackground heroOnly />
       <Navbar activeSection={activeSection} />
+      <TimeEstimatorButton />
       
       <main className="relative z-10">
         <Hero />
